@@ -3,7 +3,7 @@
  */
 package com.github.zi_jing.tsrg2srg;
 
-import net.minecraftforge.gradle.common.util.MappingFile;
+import net.minecraftforge.srgutils.IMappingFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,9 +24,9 @@ public class Main {
                 continue;
             }
             System.out.println("Loading " + input);
-            MappingFile mappingFile;
+            IMappingFile mappingFile;
             try {
-                mappingFile = MappingFile.load(tsrgFile);
+                mappingFile = IMappingFile.load(tsrgFile);
             } catch (IOException e) {
                 System.out.println("Error while loading TSRG file");
                 e.printStackTrace();
@@ -36,7 +36,7 @@ public class Main {
             File outputFile = new File(input + ".srg");
             System.out.println("Writing " + outputFile.getPath());
             try {
-                mappingFile.write(MappingFile.Format.SRG, outputFile);
+                mappingFile.write(outputFile.toPath(), IMappingFile.Format.SRG, false);
             } catch (IOException e) {
                 System.out.println("Error while writing SRG file");
                 e.printStackTrace();
